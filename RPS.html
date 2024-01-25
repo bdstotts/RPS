@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+
+<script>
+
+function game() {
+    for (let i = 0; i<5; i++){
+    playRound();
+    }
+function playRound(){
+    
+let playerChoice = prompt("What do you think will beat me, Rock, Paper, or Scissors?", "")
+playerChoiceLower = playerChoice.toLowerCase()
+console.log(playerChoiceLower)
+
+let options = ["rock","paper", "scissors"]
+let rand = Math.random()*options.length //code to randomly select an option for computer
+let computerChoice = options[rand | 0] // use of the above randomize code
+console.log(rand)
+console.log(computerChoice)
+
+// Game logic for win/loss messages
+if (playerChoiceLower === computerChoice){
+    alert("Nice draw! I also chose " + playerChoice + ".")
+}else if (playerChoiceLower=== "rock" && computerChoice ==="scissors"){
+    alert("Ouch, you crushed my scissors!")
+}else if(playerChoiceLower=== "rock" && computerChoice ==="paper"){
+    alert("My paper smothers your rock, you lose.")
+}else if (playerChoiceLower=== "scissors" && computerChoice ==="rock"){
+    alert("Hahaha, I crush your scissors!")
+}else if(playerChoiceLower=== "scissors" && computerChoice ==="paper"){
+    alert("Ah, you've cut my paper to pices. Nice fin.")
+}else if (playerChoiceLower=== "paper" && computerChoice ==="scissors"){
+    alert("You're just confetti now. Good try.")
+}else if(playerChoiceLower=== "paper" && computerChoice ==="rock"){
+    alert("It appears a thin, frail page can indeed beat a mighty stone. Well played")
+}
+else {alert("Nice try, it appears you've typed a forbidden option. " + "Besides, " +
+ '"'+playerChoice + '"' + " wouldn't stand a chance in this game.")}
+}
+}
+game();
+
+</script>
+
+</html>
