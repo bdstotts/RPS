@@ -23,130 +23,112 @@
 
 <script>
 
-/*function game() {
-    for (let i = 0; i<5; i++){
-    playRound();
-    }*/
-
-//let playerChoice = "";
-//let playerScore = 0;
-//let computerScore = 0;
-//console.log(playerChoice)
-//console.log(playerScore)
-//console.log(computerScore)
-
-const rock =document.querySelector('#rockbtn');
-
-rock.addEventListener("click", () => {
-    let computerScore=0;
+function game() {
     let playerScore=0;
-    let playerChoice = "rock"
-   // console.log(playerChoice);
-    //playRound();
-    let options = ["rock","paper", "scissors"]
-    let rand = Math.random()*options.length //code to randomly select an option for computer
-    let computerChoice = options[rand | 0] // use of the above randomize code
-    //console.log(rand)
-    console.log(playerChoice);
-    console.log(computerChoice);
-    //console.log(computerScore);
-    //console.log(playerScore);
+    let computerScore=0;
+    const rock =document.querySelector('#rockbtn');
+    const paper =document.querySelector('#paperbtn');
+    const scissors =document.querySelector('#scissorsbtn');
 
 
-    function rockChoice(playerChoice, computerChoice,playerScore,computerScore){
-        
+
+    rock.addEventListener("click", () => {
+        let playerChoice = "rock"
+        let options = ["rock","paper", "scissors"]
+        let rand = Math.random()*options.length //code to randomly select an option for computer
+        let computerChoice = options[rand | 0] // use of the above randomize code
+        console.log(playerChoice);
+        console.log(computerChoice);
+
+
+        function rockChoice(playerChoice, computerChoice,playerScore,computerScore){
+
+            if (playerChoice === computerChoice){
+                return("Nice draw! I also chose " + playerChoice + ".")
+            }else if (playerChoice=== "rock" && computerChoice ==="scissors"){
+                return("Ouch, you crushed my scissors!");
+                playerScore++;
+            }else if(playerChoice=== "rock" && computerChoice ==="paper"){
+                return("My paper smothers your rock, you lose.");
+                computerScore++;}
+        }
+       
+    
+        rockChoice(playerChoice,computerChoice,playerScore,computerScore);
+        console.log(rockChoice(playerChoice,computerChoice,playerScore,computerScore));
+
+    })
+
+
+
+    paper.addEventListener("click", () => {
+        let playerChoice = "paper";
+        let options = ["rock","paper", "scissors"]
+        let rand = Math.random()*options.length //code to randomly select an option for computer
+        let computerChoice = options[rand | 0] // use of the above randomize code
+        console.log(playerChoice);
+        console.log(computerChoice);
+
+
+        function paperChoice(playerChoice, computerChoice,playerScore,computerScore){
         if (playerChoice === computerChoice){
-            return("Nice draw! I also chose " + playerChoice + ".")
-        }else if (playerChoice=== "rock" && computerChoice ==="scissors"){
-            return("Ouch, you crushed my scissors!");
-            playerScore++;
-        }else if(playerChoice=== "rock" && computerChoice ==="paper"){
-            return("My paper smothers your rock, you lose.");
-            computerScore++;}
-
-            //console.log(computerScore);
-            //console.log(playerScore);
+        return("Nice draw! I also chose " + playerChoice + ".")
+        }else if (playerChoice=== "paper" && computerChoice ==="scissors"){
+        return("You're just confetti now. Good try.")
+        }else if(playerChoice=== "paper" && computerChoice ==="rock"){
+        return("It appears a thin, frail page can indeed beat a mighty stone. Well played")
+        }
     }
 
-    //console.log(computerScore);
-    //console.log(playerScore);
-   
-    rockChoice(playerChoice,computerChoice,playerScore,computerScore);
-    console.log(rockChoice(playerChoice,computerChoice,playerScore,computerScore));
+        paperChoice(playerChoice,computerChoice,playerScore,computerScore);
+        console.log(paperChoice(playerChoice,computerChoice,playerScore,computerScore));
 
-})
-
-
-
-const paper =document.querySelector('#paperbtn');
-paper.addEventListener("click", () => {
-    let playerChoice = "paper"
-   // console.log(playerChoice);
-    playRound();
-  ;
-
-})
-
-const scissors =document.querySelector('#scissorsbtn');
-scissors.addEventListener("click", () => {
-    let playerChoice = "scissors"
-    //console.log(playerChoice);
-    playRound();
-  ;
-
-})
-
-
-
-function playRound(playerChoice){
-
+    })
     
-function computerWin(){
-    computerScore+=1;
-}
 
-function playerWin(){
-    computerScore+=1;
-}
-
-console.log(playerScore);
-console.log(computerScore);
+    scissors.addEventListener("click", () => {
+        let playerChoice = "scissors";
+        let options = ["rock","paper", "scissors"]
+        let rand = Math.random()*options.length //code to randomly select an option for computer
+        let computerChoice = options[rand | 0] // use of the above randomize code
+        console.log(playerChoice);
+        console.log(computerChoice);
 
 
-/*let playerChoice = prompt("What do you think will beat me, Rock, Paper, or Scissors?", "")
-playerChoice = playerChoice.toLowerCase()
-console.log(playerChoice)*/
+        function scissorsChoice(playerChoice, computerChoice,playerScore,computerScore){
+        if (playerChoice === computerChoice){
+        return("Nice draw! I also chose " + playerChoice + ".")
+        }else if (playerChoice=== "scissors" && computerChoice ==="rock"){
+        return("Hahaha, I crush your scissors!")
+        }else if(playerChoice=== "scissors" && computerChoice ==="paper"){
+        return("Ah, you've cut my paper to pices. Nice fin.")
+        }
+    }
+        scissorsChoice(playerChoice,computerChoice,playerScore,computerScore);
+        console.log(scissorsChoice(playerChoice,computerChoice,playerScore,computerScore));
 
-let options = ["rock","paper", "scissors"]
-let rand = Math.random()*options.length //code to randomly select an option for computer
-let computerChoice = options[rand | 0] // use of the above randomize code
-//console.log(rand)
-console.log(playerChoice);
-console.log(computerChoice);
-
-// Game logic for win/loss messages
-if (playerChoice === computerChoice){
-    alert("Nice draw! I also chose " + playerChoice + ".")
-}else if (playerChoice=== "rock" && computerChoice ==="scissors"){
-    alert("Ouch, you crushed my scissors!")
-}else if(playerChoice=== "rock" && computerChoice ==="paper"){
-    alert("My paper smothers your rock, you lose.")
-}else if (playerChoice=== "scissors" && computerChoice ==="rock"){
-    alert("Hahaha, I crush your scissors!")
-}else if(playerChoice=== "scissors" && computerChoice ==="paper"){
-    alert("Ah, you've cut my paper to pices. Nice fin.")
-}else if (playerChoice=== "paper" && computerChoice ==="scissors"){
-    alert("You're just confetti now. Good try.")
-}else if(playerChoice=== "paper" && computerChoice ==="rock"){
-    alert("It appears a thin, frail page can indeed beat a mighty stone. Well played")
-}
-/*else {alert("Nice try, it appears you've typed a forbidden option. " + "Besides, " +
- '"'+playerChoice + '"' + " wouldn't stand a chance in this game.")}*/
-}
+    })
 
 
-//game();
 
-</script>
+    function playRound(playerChoice){
 
-</html>
+
+    function computerWin(){
+        computerScore+=1;
+    }
+
+    function playerWin(){
+        computerScore+=1;
+    }
+
+    console.log(playerScore);
+    console.log(computerScore);
+}}
+
+game();
+
+
+    </script>
+
+    </html>
