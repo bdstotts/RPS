@@ -29,41 +29,54 @@
     }*/
 
 //let playerChoice = "";
-let playerScore = 0;
-let computerScore = 0;
+//let playerScore = 0;
+//let computerScore = 0;
 //console.log(playerChoice)
 //console.log(playerScore)
 //console.log(computerScore)
 
 const rock =document.querySelector('#rockbtn');
+
 rock.addEventListener("click", () => {
+    let computerScore=0;
+    let playerScore=0;
     let playerChoice = "rock"
    // console.log(playerChoice);
     //playRound();
     let options = ["rock","paper", "scissors"]
-let rand = Math.random()*options.length //code to randomly select an option for computer
-let computerChoice = options[rand | 0] // use of the above randomize code
-//console.log(rand)
-console.log(playerChoice);
-console.log(computerChoice);
+    let rand = Math.random()*options.length //code to randomly select an option for computer
+    let computerChoice = options[rand | 0] // use of the above randomize code
+    //console.log(rand)
+    console.log(playerChoice);
+    console.log(computerChoice);
+    //console.log(computerScore);
+    //console.log(playerScore);
 
 
-function rockChoice(playerChoice, computerChoice){
-if (playerChoice === computerChoice){
-    return("Nice draw! I also chose " + playerChoice + ".")
-}else if (playerChoice=== "rock" && computerChoice ==="scissors"){
-    return("Ouch, you crushed my scissors!");
-    playerScore++;
-}else if(playerChoice=== "rock" && computerChoice ==="paper"){
-    return("My paper smothers your rock, you lose.");
-    computerScore++;
-    console.log(computerScore);
-    console.log(playerScore);
+    function rockChoice(playerChoice, computerChoice,playerScore,computerScore){
+        
+        if (playerChoice === computerChoice){
+            return("Nice draw! I also chose " + playerChoice + ".")
+        }else if (playerChoice=== "rock" && computerChoice ==="scissors"){
+            return("Ouch, you crushed my scissors!");
+            playerScore++;
+        }else if(playerChoice=== "rock" && computerChoice ==="paper"){
+            return("My paper smothers your rock, you lose.");
+            computerScore++;}
 
-}}
-console.log(rockChoice(playerChoice,computerChoice));
+            //console.log(computerScore);
+            //console.log(playerScore);
+    }
+
+    //console.log(computerScore);
+    //console.log(playerScore);
+   
+    rockChoice(playerChoice,computerChoice,playerScore,computerScore);
+    console.log(rockChoice(playerChoice,computerChoice,playerScore,computerScore));
 
 })
+
+
 
 const paper =document.querySelector('#paperbtn');
 paper.addEventListener("click", () => {
