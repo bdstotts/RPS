@@ -12,11 +12,16 @@
     <button id="scissorsbtn">Scissors</button>
 </div>
 <div id = "scores">
-    <div id="playerScore">Player Score:</div>
-    <div id="computerScore">computer Score:</div>
+    <div id="playerScore"></div>
+    <div id="computerScore"></div>
     
-</div>
-
+    <div class="results" id="result">
+        <div class="result-items">
+          <h3 id="picks"></h3>
+          <h3 id="computer-result"></h3>
+          <h2 id="result-game"></h2>
+        </div>
+    </div>
 
 
 </body>
@@ -24,15 +29,116 @@
 <script>
 
 function game() {
-    let playerScore=0;
+
+    playerScore=0;
+    computerScore=0;
+
+    document.querySelectorAll('button').forEach(el=>
+    el.addEventListener("click", function(e){
+        let playerChoice = e.currentTarget.id;
+        let userPick ="";
+        let computerPick = "";
+
+    // get user pick
+        switch(playerChoice){
+            case "rockbtn":
+                userPick="rock";
+                break;
+            case "paperbtn":
+                userPick="paper";
+                break;
+            case "scissorsbtn":
+                userPick="scissors";
+                break;    
+        };
+        
+        document.querySelector("#picks").textContent = `Player picked ${userPick}`
+
+        // computer randomized pick
+        let computerChoice = Math.floor(Math.random()*3);
+        switch(computerChoice){
+            case 0:computerPick="rock";
+            break;
+            case 1: computerPick = "paper";
+            break;
+            case 2: computerPick = "scissors";
+            break;
+        }
+
+        document.querySelector('#computer-result').textContent = `Computer picked ${computerPick}`; 
+    
+    // game logic to check who wins;
+    let result = '';
+    if (userPick === computerPick) {
+      result = 'draw';
+    } else {
+      switch (userPick) {
+        case 'rock':
+          result = (computerPick === 'scissors') ? 'win' : 'lose';
+          break;
+        case 'paper':
+          result = (computerPick === 'rock') ? 'win' : 'lose';
+          break;
+        case 'scissors':
+          result = (computerPick === 'paper') ? 'win' : 'lose';
+          break;
+       };
+    };
+    
+console.log(result)
+
+    // output for winner
+    let resultText = '';
+    switch (result) {
+      case 'draw':
+        resultText = 'The game is a tie!!!';
+        break;
+      case 'win':
+        resultText = 'The Player is the winner, Congratulations!!';
+        break;
+      case 'lose':
+        resultText = 'The Computer is the winner, Sorry :(';
+        break;
+    };
+    document.querySelector('#result-game').textContent = resultText;
+
+    //score keeping
+    switch (result) {
+      case 'draw':
+        computerScore=computerScore;
+        break;
+      case 'win':
+        playerScore++;
+        break;
+      case 'lose':
+        computerScore++;
+        break;
+        console.log(playerScore);
+        console.log(computerScore);
+    };
+
+    document.querySelector('#playerScore').textContent = `Player Score: ${playerScore}`
+    document.querySelector('#computerScore').textContent = `Computer Score: ${computerScore}`
+    
+
+// makes the result box visible
+//document.querySelector('#result').classList.remove('d-none');
+})
+)
+
+
+    }
+
+
+    /*let playerScore=0;
     let computerScore=0;
     const rock =document.querySelector('#rockbtn');
     const paper =document.querySelector('#paperbtn');
-    const scissors =document.querySelector('#scissorsbtn');
+    const scissors =document.querySelector('#scissorsbtn');*/
 
 
 
-    rock.addEventListener("click", () => {
+    /*rock.addEventListener("click",() => {
         let playerChoice = "rock"
         let options = ["rock","paper", "scissors"]
         let rand = Math.random()*options.length //code to randomly select an option for computer
@@ -44,18 +150,19 @@ function game() {
         function rockChoice(playerChoice, computerChoice,playerScore,computerScore){
 
             if (playerChoice === computerChoice){
-                return("Nice draw! I also chose " + playerChoice + ".")
+                //return("Nice draw! I also chose " + playerChoice + ".")
+                computerScore++
             }else if (playerChoice=== "rock" && computerChoice ==="scissors"){
-                return("Ouch, you crushed my scissors!");
-                playerScore++;
+                return("Ouch, you crushed my scissors!")
             }else if(playerChoice=== "rock" && computerChoice ==="paper"){
-                return("My paper smothers your rock, you lose.");
-                computerScore++;}
+                return("My paper smothers your rock, you lose.")
+            }
         }
+
        
-    
-        rockChoice(playerChoice,computerChoice,playerScore,computerScore);
         console.log(rockChoice(playerChoice,computerChoice,playerScore,computerScore));
+        console.log(playerScore);
+        console.log(computerScore);
 
     })
 
@@ -107,24 +214,12 @@ function game() {
         scissorsChoice(playerChoice,computerChoice,playerScore,computerScore);
         console.log(scissorsChoice(playerChoice,computerChoice,playerScore,computerScore));
 
-    })
+    })*/
 
 
 
-    function playRound(playerChoice){
-
-
-    function computerWin(){
-        computerScore+=1;
-    }
-
-    function playerWin(){
-        computerScore+=1;
-    }
-
-    console.log(playerScore);
-    console.log(computerScore);
-}}
+   
+//}
 
 game();
 
