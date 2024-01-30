@@ -14,6 +14,7 @@
 <div id = "scores">
     <div id="playerScore"></div>
     <div id="computerScore"></div>
+    <div id="winRate"></div>
     
     <div class="results" id="result">
         <div class="result-items">
@@ -119,6 +120,14 @@ console.log(result)
 
     document.querySelector('#playerScore').textContent = `Player Score: ${playerScore}`
     document.querySelector('#computerScore').textContent = `Computer Score: ${computerScore}`
+
+    let winRate = ((playerScore/(playerScore+computerScore))*100).toFixed(2);
+    if (playerScore ===0){
+        winrate= 0}
+        else {winRate=winRate
+    }
+   document.querySelector(`#winRate`).textContent = `Player win rate (excluding ties): ${winRate}%`
+
     
 
 // makes the result box visible
